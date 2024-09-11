@@ -1,5 +1,9 @@
 package br.com.avancard.classes;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Aluno {
     /* Atributos da classe */
     private String nome;
@@ -12,10 +16,9 @@ public class Aluno {
     private String dataMatricula;
     private String nomeEscola;
     private String serieMatriculado;
-    private double n1;
-    private double n2;
-    private double n3;
-    private double n4;
+
+    /* Atributo de lista */
+    private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 
     /* Construtor com sobrecarga */
@@ -115,51 +118,44 @@ public class Aluno {
         this.serieMatriculado = serieMatriculado;
     }
 
-    public double getN1() {
-        return n1;
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
     }
 
-    public void setN1(double n1) {
-        this.n1 = n1;
-    }
-
-    public double getN2() {
-        return n2;
-    }
-
-    public void setN2(double n2) {
-        this.n2 = n2;
-    }
-
-    public double getN3() {
-        return n3;
-    }
-
-    public void setN3(double n3) {
-        this.n3 = n3;
-    }
-
-    public double getN4() {
-        return n4;
-    }
-
-    public void setN4(double n4) {
-        this.n4 = n4;
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 
     /*Metodo que retorna a média do aluno*/
     public double getMediaNota(){
-        return (this.n1 + this.n2 + this.n3 + this.n4) / 4;
+        double somaNotas = 0.0;
+        for(Disciplina disciplina : this.disciplinas){
+        somaNotas += disciplina.getNota();
+        }
+
+        return somaNotas / disciplinas.size();
     }
 
     /* Metodo que retorna se o aluno foi aprovado */
-
     public boolean getAlunoAprovado(){
         if(this.getMediaNota() > 7.00){
             return true;
         }else{
             return false;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aluno aluno = (Aluno) o;
+        return Objects.equals(registroGeral, aluno.registroGeral) && Objects.equals(numeroCpf, aluno.numeroCpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(registroGeral, numeroCpf);
     }
 
     @Override
@@ -175,10 +171,7 @@ public class Aluno {
                 ", dataMatricula='" + dataMatricula + '\'' +
                 ", nomeEscola='" + nomeEscola + '\'' +
                 ", serieMatriculado='" + serieMatriculado + '\'' +
-                ", n1=" + n1 +
-                ", n2=" + n2 +
-                ", n3=" + n3 +
-                ", n4=" + n4 +
+                ", disciplinas=" + disciplinas +
                 '}';
     }
 }
