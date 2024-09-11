@@ -2,6 +2,8 @@ package br.com.avancard;
 
 import br.com.avancard.classes.Aluno;
 
+import java.util.Locale;
+
 /* Main é um metodo auto executavel em java */
 public class Main {
     public static void main(String[] args) {
@@ -20,13 +22,24 @@ public class Main {
         aluno1.setDataMatricula("10/01/2019");
         aluno1.setSerieMatriculado("5");
         aluno1.setNomeEscola("Escola JDEV Treinamento");
+        aluno1.setN1(8.00);
+        aluno1.setN2(6.00);
+        aluno1.setN3(4.50);
+        aluno1.setN4(10.00);
+
+        Locale.setDefault(Locale.US);
+        String nome = aluno1.getNome();
+        double media = aluno1.getMediaNota();
 
         System.out.println(aluno1.toString());
+        //System.out.printf("Aluno: %s", nome);
+        System.out.printf("A média do aluno %s é %.2f%n", nome, media );
+
 
         Aluno aluno2 = new Aluno("Maria");
-        Aluno aluno3 = new Aluno("Meire", 58, "13/01/1966");
-
         System.out.println(aluno2.toString());
+
+        Aluno aluno3 = new Aluno("Meire", 58, "13/01/1966");
         System.out.println(aluno3.toString());
 
     }
