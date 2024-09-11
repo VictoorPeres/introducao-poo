@@ -147,9 +147,19 @@ public class Aluno {
         this.n4 = n4;
     }
 
-    /*Metodo para calcular a média do aluno*/
+    /*Metodo que retorna a média do aluno*/
     public double getMediaNota(){
         return (this.n1 + this.n2 + this.n3 + this.n4) / 4;
+    }
+
+    /* Método que retorna se o aluno foi aprovado */
+
+    public boolean getAlunoAprovado(){
+        if(this.getMediaNota() > 7.00){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
