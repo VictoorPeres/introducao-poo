@@ -34,6 +34,7 @@ public class Main {
         System.out.println(aluno1.toString());
         //System.out.printf("Aluno: %s", nome);
         System.out.printf("A média do aluno %s é %.2f%n", nome, media );
+        System.out.println(aluno1.getAlunoAprovado() ? "O aluno " + aluno1.getNome() + " está aprovado" : "O aluno SSSS" + aluno1.getNome() + " reprovado");
 
 
         Aluno aluno2 = new Aluno("Maria");
