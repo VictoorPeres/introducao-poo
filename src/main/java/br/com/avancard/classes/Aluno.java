@@ -1,6 +1,7 @@
 package br.com.avancard.classes;
 
 public class Aluno {
+    /* Atributos da classe */
     private String nome;
     private int idade;
     private String dataNascimento;
@@ -12,6 +13,23 @@ public class Aluno {
     private String nomeEscola;
     private String serieMatriculado;
 
+    public Aluno() {
+
+    }
+    public Aluno(String nome){
+        this.nome = nome;
+    }
+    public Aluno(String nome, int idade, String dataNascimento){
+        this.nome = nome;
+        this.idade = idade;
+        this.dataNascimento = dataNascimento;
+    }
+
+
+
+    /* Métodos setters e getters
+    * Os setters são métodos para adicionar dados aos atributos
+    * Os getters são métodos para resgatar dados já adicionados */
     public String getNome() {
         return nome;
     }
@@ -90,5 +108,21 @@ public class Aluno {
 
     public void setSerieMatriculado(String serieMatriculado) {
         this.serieMatriculado = serieMatriculado;
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno{" +
+                "nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", dataNascimento='" + dataNascimento + '\'' +
+                ", registroGeral='" + registroGeral + '\'' +
+                ", numeroCpf='" + numeroCpf + '\'' +
+                ", nomeMae='" + nomeMae + '\'' +
+                ", nomePai='" + nomePai + '\'' +
+                ", dataMatricula='" + dataMatricula + '\'' +
+                ", nomeEscola='" + nomeEscola + '\'' +
+                ", serieMatriculado='" + serieMatriculado + '\'' +
+                '}';
     }
 }
