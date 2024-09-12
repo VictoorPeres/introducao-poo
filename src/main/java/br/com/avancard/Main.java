@@ -2,9 +2,11 @@ package br.com.avancard;
 
 import br.com.avancard.classes.Aluno;
 import br.com.avancard.classes.Disciplina;
+import br.com.avancard.constantes.StatusAluno;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -13,7 +15,13 @@ public class Main {
     public static void main(String[] args) {
 
         List<Aluno> alunos = new ArrayList<Aluno>();
-        for(int aux = 0; aux <= 1; aux++){
+
+        HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
+
+       /* List<Aluno> alunosAprovados = new ArrayList<Aluno>();
+        List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
+        List<Aluno> alunosReprovados = new ArrayList<Aluno>();*/
+        for(int aux = 0; aux < 5; aux++){
         /* new Aluno() é uma instancia (Criação de objeto)*/
         /* aluno1 é uma referencia para o objeto aluno */
 
@@ -44,7 +52,7 @@ public class Main {
         aluno1.setSerieMatriculado(serieMatriculado);
         aluno1.setNomeEscola(nomeEscola);*/
 
-        for(int i=1; i <= 4; i++){
+        for(int i=1; i <= 1; i++){
             String disciplinaAluno = JOptionPane.showInputDialog("Digite a disciplina " + i);
             double nota = Double.parseDouble(JOptionPane.showInputDialog("Digite sua nota " + i));
 
@@ -92,9 +100,35 @@ public class Main {
         double media = aluno1.getMediaNota();
         alunos.add(aluno1);
         }
+        //
+        maps.put(StatusAluno.APROVADO, new ArrayList<>());
+        maps.put(StatusAluno.REPROVADO, new ArrayList<>());
+        maps.put(StatusAluno.RECUPERACAO, new ArrayList<>());
+    /*Lista de alunos aprovados, reprovados e em recuperação*/
+        for(Aluno aluno : alunos){
+            if(aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.APROVADO)){
+                maps.get(StatusAluno.APROVADO).add(aluno);
+            }else if(aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.REPROVADO)){
+                maps.get(StatusAluno.REPROVADO).add(aluno);
+            }else{
+                maps.get(StatusAluno.RECUPERACAO).add(aluno);
+            }
+        }
 
+        System.out.println("----------------------Lista dos aprovados---------------------------");
+        for(Aluno aluno : maps.get(StatusAluno.APROVADO)){
+            System.out.println("O aluno " + aluno.getNome() + " esta " + StatusAluno.APROVADO + " com média " + aluno.getMediaNota());
+        }
+        System.out.println("----------------------Lista dos reprovados---------------------------");
+        for(Aluno aluno : maps.get(StatusAluno.REPROVADO)){
+            System.out.println("O aluno " + aluno.getNome() + " esta " + StatusAluno.REPROVADO + " com média " + aluno.getMediaNota());
+        }
+        System.out.println("--------------------Lista dos em recuperação-------------------------");
+        for(Aluno aluno : maps.get(StatusAluno.RECUPERACAO)){
+            System.out.println("O aluno " + aluno.getNome() + " esta " + StatusAluno.RECUPERACAO + " com média " + aluno.getMediaNota());
+        }
         // percorrendo listas
-        for(int pos = 0; pos < alunos.size(); pos++) {
+      /*  for(int pos = 0; pos < alunos.size(); pos++) {
             Aluno aluno = alunos.get(pos);
             if(aluno.getNome().equals("victor")){
                 alunos.remove(pos);
@@ -129,7 +163,7 @@ public class Main {
             }
         }
 
-        /*for (Aluno aluno : alunos){
+        for (Aluno aluno : alunos){
             if(aluno.getNome().equalsIgnoreCase("victor")){
                 alunos.remove(aluno);
                 break;

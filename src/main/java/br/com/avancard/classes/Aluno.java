@@ -152,10 +152,10 @@ public class Aluno {
             if(this.getMediaNota() > 7.00){
                 return StatusAluno.APROVADO;
             }else {
-                return StatusAluno.REPROVADO;
+                return StatusAluno.RECUPERACAO;
             }
         }else{
-            return StatusAluno.RECUPERACAO;
+            return StatusAluno.REPROVADO;
         }
     }
 
