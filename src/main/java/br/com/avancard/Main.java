@@ -17,7 +17,7 @@ public class Main {
         /* new Aluno() é uma instancia (Criação de objeto)*/
         /* aluno1 é uma referencia para o objeto aluno */
 
-        String nome = JOptionPane.showInputDialog("Digite seu nome");
+        String nome = JOptionPane.showInputDialog("Digite o nome da pessoa " + (aux + 1));
         /*int idade = Integer.parseInt(JOptionPane.showInputDialog("Digite sua idade"));
         String dataNascimento = JOptionPane.showInputDialog("Digite a data de nascimento");
         String registroGeral = JOptionPane.showInputDialog("Digite o número do registro geral");
@@ -93,13 +93,63 @@ public class Main {
         alunos.add(aluno1);
         }
 
-        //For each para percorrer listas
-        for(Aluno aluno : alunos){
-            System.out.println(aluno.toString());
-            System.out.printf("A média do aluno %s é %.2f%n", aluno.getNome(), aluno.getMediaNota());
-            System.out.println(aluno.getAlunoAprovado() ? "O aluno " + aluno.getNome() + " está aprovado" : "O aluno " + aluno.getNome() + " está reprovado");
-
+        // percorrendo listas
+        for(int pos = 0; pos < alunos.size(); pos++) {
+            Aluno aluno = alunos.get(pos);
+            if(aluno.getNome().equals("victor")){
+                alunos.remove(pos);
+            }else{
+                System.out.println(aluno.toString());
+                System.out.println("A média do aluno " + aluno.getNome() + " é " +  aluno.getMediaNota());
+                System.out.println(aluno.getAlunoAprovado() ? "O aluno está aprovado" : "O aluno está reprovado");
+            }
         }
+
+        for(int pos = 0; pos < alunos.size(); pos++) {
+            Aluno aluno = alunos.get(pos);
+
+            if(aluno.getNome().equalsIgnoreCase("maria")){
+                Aluno trocar = new Aluno();
+                trocar.setNome("Aluno trocado");
+
+                Disciplina disciplina = new Disciplina();
+                disciplina.setDisciplina("Astronomia");
+                disciplina.setNota(10.00);
+
+                trocar.getDisciplinas().add(disciplina);
+                alunos.set(pos, trocar);
+                aluno = alunos.get(pos);
+            }
+            System.out.println("Alunos que sobraram na lista");
+            System.out.println(aluno.getNome());
+            System.out.println("Suas materias são");
+            for(int i = 0 ; i < aluno.getDisciplinas().size(); i++) {
+                Disciplina disciplina = aluno.getDisciplinas().get(i);
+                System.out.println(disciplina.getDisciplina());
+            }
+        }
+
+        /*for (Aluno aluno : alunos){
+            if(aluno.getNome().equalsIgnoreCase("victor")){
+                alunos.remove(aluno);
+                break;
+            }else{
+                System.out.println(aluno.toString());
+                System.out.println("A média do aluno " + aluno.getNome() + " é " + aluno.getMediaNota());
+                System.out.println(aluno.getAlunoAprovado() ? "O aluno está aprovado" : "O aluno está reprovado");
+            }
+        }
+        System.out.println(alunos.toString());
+        for(Aluno aluno : alunos){
+            System.out.println("Alunos que sobraram na lista");
+            System.out.println(aluno.getNome());
+            System.out.println("Suas matérias são");
+            for(Disciplina disciplina : aluno.getDisciplinas()){
+                System.out.println(disciplina.getDisciplina());
+            }
+        }*/
+
+
 
     }
 }
