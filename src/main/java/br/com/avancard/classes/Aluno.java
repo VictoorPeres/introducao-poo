@@ -1,5 +1,7 @@
 package br.com.avancard.classes;
 
+import br.com.avancard.constantes.StatusAluno;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -142,6 +144,18 @@ public class Aluno {
             return true;
         }else{
             return false;
+        }
+    }
+
+    public String getAlunoAprovado2(){
+        if(this.getMediaNota() > 5.00){
+            if(this.getMediaNota() > 7.00){
+                return StatusAluno.APROVADO;
+            }else {
+                return StatusAluno.REPROVADO;
+            }
+        }else{
+            return StatusAluno.RECUPERACAO;
         }
     }
 
