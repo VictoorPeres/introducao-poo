@@ -2,6 +2,7 @@ package br.com.avancard;
 
 import br.com.avancard.classes.Aluno;
 import br.com.avancard.classes.Disciplina;
+import br.com.avancard.classes.Secretario;
 import br.com.avancard.constantes.StatusAluno;
 
 import javax.swing.*;
@@ -17,9 +18,11 @@ public class Main {
         String login = JOptionPane.showInputDialog("Digite seu login:");
         String senha = JOptionPane.showInputDialog("Digite sua senha:");
 
-        if(login.equalsIgnoreCase("admin") &&
-                senha.equalsIgnoreCase("admin")) {
+        Secretario secretario = new Secretario();
+        secretario.setLogin(login);
+        secretario.setSenha(senha);
 
+        if(secretario.autentica()) {
 
             List<Aluno> alunos = new ArrayList<Aluno>();
 

@@ -1,11 +1,16 @@
 package br.com.avancard.classes;
 
+import br.com.avancard.interfaces.PermitirAcesso;
+
 import java.util.Objects;
 
-public class Secretario extends Pessoa {
+public class Secretario extends Pessoa implements PermitirAcesso{
     private String registro;
     private String nivelCargo;
     private String experiencia;
+
+    private String login;
+    private String senha;
 
     @Override
     public double salario() {
@@ -36,6 +41,22 @@ public class Secretario extends Pessoa {
         this.experiencia = experiencia;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,5 +68,10 @@ public class Secretario extends Pessoa {
     @Override
     public int hashCode() {
         return Objects.hashCode(registro);
+    }
+
+    @Override
+    public boolean autentica() {
+        return login.equals("admin") && senha.equals("admin");
     }
 }
