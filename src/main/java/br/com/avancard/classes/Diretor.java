@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Diretor extends Pessoa {
     private String registroEducacao;
-    private String tempoDirecao;
+    private int tempoDirecao;
     private String titulacao;
 
     public String getRegistroEducacao() {
