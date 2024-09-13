@@ -17,12 +17,8 @@ public class Main {
 
         String login = JOptionPane.showInputDialog("Digite seu login:");
         String senha = JOptionPane.showInputDialog("Digite sua senha:");
-
-        Secretario secretario = new Secretario();
-        secretario.setLogin(login);
-        secretario.setSenha(senha);
-
-        if(secretario.autentica()) {
+            //Usando o metodo autentica da interface, apenas para a classe secretario.
+        if(new Secretario().autentica(login, senha)) {
 
             List<Aluno> alunos = new ArrayList<Aluno>();
 
@@ -189,6 +185,8 @@ public class Main {
             }
         }*/
 
+        }else {
+            JOptionPane.showMessageDialog(null, "Credenciais invalidas");
         }
 
     }
