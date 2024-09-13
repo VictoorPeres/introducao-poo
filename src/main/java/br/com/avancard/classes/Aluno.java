@@ -29,6 +29,11 @@ public class Aluno extends Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
+    @Override
+    public double salario() {
+        return 1500.0;
+    }
+
 
     /* Métodos getters e setters
     * Os setters são métodos para adicionar dados aos atributos

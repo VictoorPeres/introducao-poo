@@ -7,6 +7,11 @@ public class Secretario extends Pessoa {
     private String nivelCargo;
     private String experiencia;
 
+    @Override
+    public double salario() {
+        return 2000.0;
+    }
+
     public String getRegistro() {
         return registro;
     }

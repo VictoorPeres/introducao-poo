@@ -7,6 +7,11 @@ public class Diretor extends Pessoa {
     private int tempoDirecao;
     private String titulacao;
 
+    @Override
+    public double salario() {
+        return 3000.0;
+    }
+
     public String getRegistroEducacao() {
         return registroEducacao;
     }
