@@ -149,7 +149,6 @@ public class Main {
             if(aluno.getNome().equalsIgnoreCase("maria")){
                 Aluno trocar = new Aluno();
                 trocar.setNome("Aluno trocado");
-SS
                 Disciplina disciplina = new Disciplina();
                 disciplina.setDisciplina("Astronomia");
                 disciplina.setNota(10.00);
