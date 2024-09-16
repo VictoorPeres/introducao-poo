@@ -3,6 +3,7 @@ package br.com.avancard;
 import br.com.avancard.classes.Aluno;
 import br.com.avancard.classes.Disciplina;
 import br.com.avancard.classes.Secretario;
+import br.com.avancard.classesAuxiliares.FuncaoAutentica;
 import br.com.avancard.constantes.StatusAluno;
 import br.com.avancard.interfaces.PermitirAcesso;
 
@@ -18,10 +19,8 @@ public class Main {
 
         String login = JOptionPane.showInputDialog("Digite seu login:");
         String senha = JOptionPane.showInputDialog("Digite sua senha:");
-
-        PermitirAcesso permitirAcesso = new Secretario(login, senha);
             //Usando o metodo autentica da interface, apenas para a classe secretario.
-        if(permitirAcesso.autentica()) {
+        if(new FuncaoAutentica(new Secretario(login, senha)).autenticar()) {
 
             List<Aluno> alunos = new ArrayList<Aluno>();
 
