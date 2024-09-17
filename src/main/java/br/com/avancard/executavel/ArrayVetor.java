@@ -31,6 +31,24 @@ public class ArrayVetor {
         disciplina2.setNota(notas2);
         aluno.getDisciplinas().add(disciplina2);
 
+        Aluno aluno2 = new Aluno();
+        aluno2.setNome("Floriano Oliveira");
+        aluno2.setNomeEscola("JDEV Treinamento");
+
+        /* Criação da disciplina */
+        Disciplina disciplina3 = new Disciplina();
+        disciplina3.setDisciplina("Arrays e Vetores");
+        double[] notas3 = {7, 4.3, 5, 2};
+        disciplina3.setNota(notas3);
+        aluno2.getDisciplinas().add(disciplina3);
+
+        Disciplina disciplina4 = new Disciplina();
+        disciplina4.setDisciplina("Tratamento de Exceções");
+        double[] notas4 = {9, 8, 9.5, 9.9};
+        disciplina4.setNota(notas4);
+        aluno2.getDisciplinas().add(disciplina4);
+
+        /*
         System.out.println("Aluno: " + aluno.getNome());
         System.out.println("Escola: " + aluno.getNomeEscola());
 
@@ -49,7 +67,21 @@ public class ArrayVetor {
         }
         System.out.println("###########################");
         System.out.println("Média do aluno " + aluno.getNome() + ": " + aluno.getMediaNota());
+*/
+        Aluno[] arrayAlunos = new Aluno[2];
 
+        arrayAlunos[0] = aluno;
+        arrayAlunos[1] = aluno2;
+
+        for (Aluno aluno1 : arrayAlunos) {
+            System.out.println("O nome do alunoe é: " + aluno1.getNome());
+            for (Disciplina disciplina1 : aluno1.getDisciplinas())    {
+                System.out.println("Nome da disciplina: " +disciplina1.getDisciplina()  );
+                for (int aux = 0; aux < disciplina1.getNota().length; aux++) {
+                    System.out.println("Nota" + aux + ": " + disciplina1.getNota()[aux]);
+                }
+            }
+        }
 
 
 
