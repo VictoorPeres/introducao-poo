@@ -1,23 +1,28 @@
-package br.com.avancard;
+package br.com.avancard.executavel;
 
 import br.com.avancard.classes.Aluno;
 import br.com.avancard.classes.Disciplina;
 import br.com.avancard.classes.Secretario;
 import br.com.avancard.classesAuxiliares.FuncaoAutentica;
 import br.com.avancard.constantes.StatusAluno;
-import br.com.avancard.interfaces.PermitirAcesso;
+import br.com.avancard.excecao.ExcecaoProcessar;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 /* Main é um metodo auto executavel em java */
 public class Main {
     public static void main(String[] args) {
         try {
+            lerArquivo();
 
+           // try {
+
+            /*}catch (FileNotFoundException e){
+                throw new ExcecaoProcessar(e.getMessage());
+            }*/
             String login = JOptionPane.showInputDialog("Digite seu login:");
             String senha = JOptionPane.showInputDialog("Digite sua senha:");
             //Usando o metodo autentica da interface, apenas para a classe secretario.
@@ -30,13 +35,13 @@ public class Main {
        /* List<Aluno> alunosAprovados = new ArrayList<Aluno>();
         List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
         List<Aluno> alunosReprovados = new ArrayList<Aluno>();*/
-                for (int aux = 0; aux < 5; aux++) {
+                for (int aux = 0; aux < 1; aux++) {
                     /* new Aluno() é uma instancia (Criação de objeto)*/
                     /* aluno1 é uma referencia para o objeto aluno */
 
                     String nome = JOptionPane.showInputDialog("Digite o nome da pessoa " + (aux + 1));
-        /*int idade = Integer.parseInt(JOptionPane.showInputDialog("Digite sua idade"));
-        String dataNascimento = JOptionPane.showInputDialog("Digite a data de nascimento");
+        String idade = JOptionPane.showInputDialog("Digite sua idade");
+        /*String dataNascimento = JOptionPane.showInputDialog("Digite a data de nascimento");
         String registroGeral = JOptionPane.showInputDialog("Digite o número do registro geral");
         String numeroCpf = JOptionPane.showInputDialog("Digite o numero do CPF");
         String nomeMae  = JOptionPane.showInputDialog("Digite o nome da mãe");
@@ -48,8 +53,8 @@ public class Main {
 
                     Aluno aluno1 = new Aluno();
                     aluno1.setNome(nome);
-        /*aluno1.setIdade(idade);
-        aluno1.setDataNascimento(dataNascimento);
+        aluno1.setIdade(Integer.valueOf(idade));
+        /* aluno1.setDataNascimento(dataNascimento);
         aluno1.setRegistroGeral(registroGeral);
         aluno1.setNumeroCpf(numeroCpf);
         aluno1.setNomeMae(nomeMae);
@@ -64,7 +69,7 @@ public class Main {
 
                         Disciplina disciplina = new Disciplina();
                         disciplina.setDisciplina(disciplinaAluno);
-                        disciplina.setNota(nota);
+                        //disciplina.setNota(nota);
                         aluno1.getDisciplinas().add(disciplina);
 
                     }
@@ -106,13 +111,14 @@ public class Main {
                     double media = aluno1.getMediaNota();
                     alunos.add(aluno1);
                 }
-                //
+                //inicializando a chave
                 maps.put(StatusAluno.APROVADO, new ArrayList<>());
                 maps.put(StatusAluno.REPROVADO, new ArrayList<>());
                 maps.put(StatusAluno.RECUPERACAO, new ArrayList<>());
                 /*Lista de alunos aprovados, reprovados e em recuperação*/
                 for (Aluno aluno : alunos) {
                     if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.APROVADO)) {
+                        //RECUPERANDO A LISTA DE ALUNOS POR MEIO DA CHAVE QUE FOI INICIALIZADA A CIMA
                         maps.get(StatusAluno.APROVADO).add(aluno);
                     } else if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.REPROVADO)) {
                         maps.get(StatusAluno.REPROVADO).add(aluno);
@@ -191,9 +197,42 @@ public class Main {
             } else {
                 JOptionPane.showMessageDialog(null, "Credenciais invalidas");
             }
-        }catch(Exception e){
+        }catch(NumberFormatException e){
+
+            StringBuilder saida = new StringBuilder();
+            //imprime erro no console java
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro ao processar");
+
+            //Mensagem do erro ou causa
+            System.out.println("Mensagem: " + e.getMessage());
+
+            for (int i = 0; i < e.getStackTrace().length; i++ ) {
+                saida.append("\n Classe de erro: " + e.getStackTrace()[i].getClass());
+                saida.append("\n Metodo de erro: " + e.getStackTrace()[i].getMethodName());
+                saida.append("\n Linha de erro: " + e.getStackTrace()[i].getLineNumber());
+                saida.append("\n Classe: " + e.getStackTrace()[i].getClassName());
+                //System.out.println("Metodo de erro: " + e.getStackTrace()[i].getMethodName());
+
+            }
+
+            JOptionPane.showMessageDialog(null, "Erro de conversão de número" + saida.toString());
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro de Null Pointer Exception");
+        } catch (ExcecaoProcessar e) /* Captura todas as excessões que não prevemos */ {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro da exceção customizada: " + e.getClass().getName());
+        }finally /* O finally sempre é executado, ocorrendo erro ou não. */ {
+            JOptionPane.showMessageDialog(null, "Fim do programa");
+        }
+
+    }
+    public static void lerArquivo () throws ExcecaoProcessar {
+        try{
+            File fil = new File("C:\\Users\\Samsung\\Desktop\\JAVA JDEV.txt");
+            Scanner scanner = new Scanner(fil);
+        }catch (FileNotFoundException e){
+            throw new ExcecaoProcessar(e.getMessage());
         }
 
     }

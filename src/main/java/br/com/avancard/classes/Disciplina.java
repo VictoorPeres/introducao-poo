@@ -1,26 +1,35 @@
 package br.com.avancard.classes;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /* Essa classe Disciplina servira para todos os objetos e instancias de notas e materias */
 public class Disciplina {
     private String disciplina;
-    private double nota;
+    private double[] nota = new double[3];
 
 
     public String getDisciplina() {
         return disciplina;
     }
 
+    public double getMediaNotas(){
+        double somaNotas = 0;
+        for(int i = 0; i < nota.length; i++){
+            somaNotas += nota[i];
+        }
+        return somaNotas / nota.length;
+    }
+
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
     }
 
-    public double getNota() {
+    public double[] getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(double[] nota) {
         this.nota = nota;
     }
 
@@ -37,11 +46,11 @@ public class Disciplina {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Disciplina that = (Disciplina) o;
-        return Double.compare(nota, that.nota) == 0 && Objects.equals(disciplina, that.disciplina);
+        return Objects.equals(disciplina, that.disciplina) && Objects.deepEquals(nota, that.nota);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(disciplina, nota);
+        return Objects.hash(disciplina, Arrays.hashCode(nota));
     }
 }
